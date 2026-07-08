@@ -1,0 +1,560 @@
+{
+  "genres_disponibles": [
+    "Shonen",
+    "Seinen",
+    "Horreur",
+    "Action",
+    "Isekai",
+    "Comedie",
+    "Drame",
+    "Sport"
+  ],
+  "genres_series_disponibles": [
+    "Fantasy",
+    "Thriller",
+    "Historique"
+  ],
+  "config": {
+    "frequence_recherche": "mensuelle",
+    "derniere_recherche_globale": "2026-07-07"
+  },
+  "series": [
+    {
+      "id": "one-piece",
+      "titre": "One Piece",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "coup_de_coeur": true,
+      "jalons": [
+        { "label": "Diffusion hebdomadaire", "etat": "disponible" }
+      ],
+      "notes": "Pas de fin en vue",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "jujutsu-kaisen",
+      "titre": "Jujutsu Kaisen",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Saison 3", "etat": "disponible" },
+        { "label": "Saison 4", "etat": "inconnue", "date": "2027" }
+      ],
+      "notes": "Saison 4 (Culling Game Part 2) annoncee, trailer devoile en juin 2026, sortie visee 2027 sans mois precis",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "my-hero-academia",
+      "titre": "My Hero Academia",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "coup_de_coeur": true,
+      "jalons": [],
+      "notes": "Complet, episode special \"More\" vu. Spin-off Vigilantes suivi separement",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "one-punch-man",
+      "titre": "One Punch Man",
+      "type": "anime",
+      "genre": "Action",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Saison 3 partie 2", "etat": "inconnue", "date": "2027" }
+      ],
+      "notes": "Pas de mois precis annonce pour la partie 2",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "kaiju-no-8",
+      "titre": "Kaiju No. 8",
+      "type": "anime",
+      "genre": "Action",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Arc de conclusion", "etat": "inconnue", "date": "fin 2026 / 2027" }
+      ],
+      "notes": "Arc de conclusion confirme en production (Jump Festa 2026), pas de mois precis. Court-metrage spin-off \"Narumi's Week at Work\" prevu courant 2026",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "demon-slayer",
+      "titre": "Demon Slayer",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "coup_de_coeur": true,
+      "jalons": [
+        { "label": "Film Infinity Castle Partie 1", "etat": "disponible" },
+        { "label": "Film Infinity Castle Partie 2", "etat": "inconnue", "date": "2027" },
+        { "label": "Film Infinity Castle Partie 3", "etat": "inconnue", "date": "2029" }
+      ],
+      "notes": "Choix d'attendre l'anime plutot que le manga. Trilogie de films qui conclut l'histoire",
+      "derniere_maj": "2026-07-06"
+    },
+    {
+      "id": "chainsaw-man",
+      "titre": "Chainsaw Man",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Film Reze Arc", "etat": "disponible" }
+      ],
+      "notes": "Saison 1 vue",
+      "derniere_maj": "2026-07-06"
+    },
+    {
+      "id": "attack-on-titan",
+      "titre": "Attack on Titan",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Complet, aucune suite prevue",
+      "derniere_maj": "2026-07-04"
+    },
+    {
+      "id": "another",
+      "titre": "Another",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Adaptation complete",
+      "derniere_maj": "2026-07-04"
+    },
+    {
+      "id": "deadman-wonderland",
+      "titre": "Deadman Wonderland",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Confirme : jamais de saison 2",
+      "derniere_maj": "2026-07-04"
+    },
+    {
+      "id": "black-lagoon",
+      "titre": "Black Lagoon",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Complet (3 saisons/OVA), rien de neuf annonce",
+      "derniere_maj": "2026-07-04"
+    },
+    {
+      "id": "my-hero-academia-vigilantes",
+      "titre": "My Hero Academia: Vigilantes",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Saison 2", "etat": "disponible" }
+      ],
+      "notes": "Spin-off, se deroule avant la serie principale. Saison 1 vue",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "fire-force",
+      "titre": "Fire Force",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Saison 2", "etat": "disponible" },
+        { "label": "Saison 3 (finale)", "etat": "disponible" }
+      ],
+      "notes": "Saison 1 vue. La serie a ete confirmee terminee sur 3 saisons : la saison 3 (finale), diffusee en 2 parties (avril-juin 2025 puis janvier-avril 2026), est desormais entierement disponible et conclut l'histoire, aucune suite prevue au-dela",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "hells-paradise",
+      "titre": "Hell's Paradise",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Saison 2", "etat": "disponible" }
+      ],
+      "notes": "Saison 1 vue. Saison 3 pas encore officiellement confirmee (aucune date, teaser ou annonce studio), mais tres probable vu qu'il reste assez de matiere dans le manga (saison 2 couvre jusqu'a ~90 chapitres sur 127). Predictions non-officielles autour de fin 2027/2028",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "yowamushi-pedal",
+      "titre": "Yowamushi Pedal",
+      "type": "anime",
+      "genre": "Sport",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Suite a verifier", "etat": "disponible" }
+      ],
+      "notes": "Point d'arret exact a verifier avant de reprendre. Repere episodes/saisons : S1 ep.1-38, S2 ep.39-62, S3 ep.63-87, S4 ep.88-112, S5 \"Limit Break\" ep.113-137 (derniere saison a ce jour, diffusee en 2022, aucune nouvelle saison annoncee depuis)",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "solo-leveling",
+      "titre": "Solo Leveling",
+      "type": "anime",
+      "genre": "Isekai",
+      "statut": "en_cours",
+      "coup_de_coeur": true,
+      "jalons": [
+        { "label": "Saison 3", "etat": "inconnue", "date": "2027-2028" }
+      ],
+      "notes": "Saison 3 confirmee en production (9 juin 2026, D&C Media), fenetre encore large (2027-2028)",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "bleach",
+      "titre": "Bleach: Thousand-Year Blood War",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Partie 4 (finale) \"The Calamity\"", "etat": "disponible", "date": "25 juillet 2026" }
+      ],
+      "notes": "Partie 4 finale \"The Calamity\" sort le 25 juillet 2026 (Hulu / Disney+)",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "vinland-saga",
+      "titre": "Vinland Saga",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "2 saisons vues, rien de plus annonce",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "naruto",
+      "titre": "Naruto & Naruto Shippuden",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "hajime-no-ippo",
+      "titre": "Hajime no Ippo",
+      "type": "anime",
+      "genre": "Sport",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "baki",
+      "titre": "Baki",
+      "type": "anime",
+      "genre": "Action",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "samurai-champloo",
+      "titre": "Samurai Champloo",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "coup_de_coeur": true,
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "fullmetal-alchemist",
+      "titre": "Fullmetal Alchemist",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "coup_de_coeur": true,
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "yu-gi-oh-duel-monsters",
+      "titre": "Yu-Gi-Oh! Duel Monsters (Saison 1)",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "hellsing",
+      "titre": "Hellsing",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "elfen-lied",
+      "titre": "Elfen Lied",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "mirai-nikki",
+      "titre": "Mirai Nikki",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "fairy-tail",
+      "titre": "Fairy Tail",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "death-note",
+      "titre": "Death Note",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "parasyte",
+      "titre": "Parasyte",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "ajin",
+      "titre": "Ajin",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "higurashi-no-naku-koro-ni",
+      "titre": "Higurashi no Naku Koro ni",
+      "type": "anime",
+      "genre": "Horreur",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "soul-eater",
+      "titre": "Soul Eater",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "to-love-ru",
+      "titre": "To Love-Ru",
+      "type": "anime",
+      "genre": "Comedie",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "assassination-classroom",
+      "titre": "Assassination Classroom",
+      "type": "anime",
+      "genre": "Shonen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "psycho-pass",
+      "titre": "Psycho-Pass",
+      "type": "anime",
+      "genre": "Seinen",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "shokugeki-no-soma",
+      "titre": "Shokugeki no Soma",
+      "type": "anime",
+      "genre": "Comedie",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Vu",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "house-of-the-dragon",
+      "titre": "House of the Dragon",
+      "type": "serie",
+      "genre": "Fantasy",
+      "statut": "en_cours",
+      "jalons": [
+        { "label": "Diffusion hebdomadaire", "etat": "disponible" }
+      ],
+      "notes": "Comme One Piece, diffusion hebdomadaire",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "alice-in-borderlands",
+      "titre": "Alice in Borderlands",
+      "type": "serie",
+      "genre": "Thriller",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Complet, saison 3 vue, pas de saison 4 prevue",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "game-of-thrones",
+      "titre": "Game of Thrones",
+      "type": "serie",
+      "genre": "Fantasy",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Complet, univers prolonge par House of the Dragon et A Knight of the Seven Kingdoms",
+      "derniere_maj": "2026-07-07"
+    },
+    {
+      "id": "vikings",
+      "titre": "Vikings",
+      "type": "serie",
+      "genre": "Historique",
+      "statut": "termine",
+      "jalons": [],
+      "notes": "Complet",
+      "derniere_maj": "2026-07-07"
+    }
+  ],
+  "a_voir": [
+    {
+      "titre": "Gangsta",
+      "type": "anime",
+      "genre": "Action",
+      "similaire_a": ["Black Lagoon"],
+      "notes": "Polar/action dans un univers mafieux"
+    },
+    {
+      "titre": "A Knight of the Seven Kingdoms",
+      "type": "serie",
+      "genre": "Fantasy",
+      "similaire_a": ["Game of Thrones", "House of the Dragon"],
+      "notes": "Spin-off se deroulant dans l'univers de Game of Thrones. Saison 1 (6 episodes) diffusee et terminee jan-fev 2026, entierement disponible"
+    },
+    {
+      "titre": "Gantz",
+      "type": "anime",
+      "genre": "Horreur",
+      "similaire_a": ["Elfen Lied", "Ajin", "Mirai Nikki"],
+      "notes": "Horreur/SF ultra-violente avec survie forcee, dans la continuite de Elfen Lied et Mirai Nikki"
+    },
+    {
+      "titre": "The Promised Neverland",
+      "type": "anime",
+      "genre": "Horreur",
+      "similaire_a": ["Another", "Mirai Nikki"],
+      "notes": "Thriller/horreur psychologique, tension et jeu du chat et de la souris comme Mirai Nikki"
+    },
+    {
+      "titre": "Dorohedoro",
+      "type": "anime",
+      "genre": "Horreur",
+      "similaire_a": ["Deadman Wonderland", "Ajin"],
+      "notes": "Horreur/action a l'ambiance sale et magie brutale, univers proche de Deadman Wonderland"
+    },
+    {
+      "titre": "Berserk",
+      "type": "anime",
+      "genre": "Action",
+      "similaire_a": ["Vinland Saga", "Samurai Champloo"],
+      "notes": "Seinen dark fantasy tres cru, meme registre mature que Vinland Saga"
+    },
+    {
+      "titre": "Golden Kamuy",
+      "type": "anime",
+      "genre": "Action",
+      "similaire_a": ["Vikings", "Samurai Champloo"],
+      "notes": "Seinen historique (Japon/Hokkaido debut 20e), chasse au tresor et action, croise le gout pour Vikings et Samurai Champloo"
+    },
+    {
+      "titre": "Overlord",
+      "type": "anime",
+      "genre": "Isekai",
+      "similaire_a": ["Solo Leveling"],
+      "notes": "Isekai power-fantasy centre sur un protagoniste surpuissant, meme veine que Solo Leveling"
+    },
+    {
+      "titre": "Shogun",
+      "type": "serie",
+      "genre": "Historique",
+      "similaire_a": ["Vikings"],
+      "notes": "Serie historique (Japon feodal, 2024) tres acclamee, meme registre que Vikings"
+    }
+  ],
+  "pas_interesse": [
+    {
+      "titre": "Drifters",
+      "type": "anime",
+      "genre": "Seinen",
+      "notes": "Vu, pas convaincu"
+    },
+    {
+      "titre": "Casa de Papel",
+      "type": "serie",
+      "genre": "Thriller",
+      "notes": "Premiere saison cool, redondant apres"
+    },
+    {
+      "titre": "Tokyo Ghoul",
+      "type": "anime",
+      "genre": "Horreur",
+      "notes": "Essaye, pas accroche"
+    },
+    {
+      "titre": "Haikyuu!!",
+      "type": "anime",
+      "genre": "Sport",
+      "notes": "Le sport n'est pas un genre de predilection"
+    }
+  ]
+}

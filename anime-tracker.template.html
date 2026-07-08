@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Suivi Anime</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#242220;
+    --paper:#2D2B27;
+    --ink:#F1ECE4;
+    --ink-soft:#B6B0A5;
+    --line:#403C36;
+
+    --g-shonen:#E0A857;    --g-shonen-bg:rgba(224,168,87,0.16);
+    --g-seinen:#83AACF;    --g-seinen-bg:rgba(131,170,207,0.16);
+    --g-horreur:#DB8888;   --g-horreur-bg:rgba(219,136,136,0.16);
+    --g-action:#E27B7B;    --g-action-bg:rgba(226,123,123,0.16);
+    --g-isekai:#B79FE0;    --g-isekai-bg:rgba(183,159,224,0.16);
+    --g-comedie:#E0CC70;   --g-comedie-bg:rgba(224,204,112,0.16);
+    --g-drame:#7FCBAE;     --g-drame-bg:rgba(127,203,174,0.16);
+    --g-sport:#C97B4A;     --g-sport-bg:rgba(201,123,74,0.16);
+
+    --g-fantasy:#C9A66B;    --g-fantasy-bg:rgba(201,166,107,0.16);
+    --g-thriller:#D9727F;   --g-thriller-bg:rgba(217,114,127,0.16);
+    --g-historique:#8FA679; --g-historique-bg:rgba(143,166,121,0.16);
+
+    --ok:#8ACC9E;    --ok-bg:rgba(138,204,158,0.16);
+    --warn:#E0B25E;  --warn-bg:rgba(224,178,94,0.16);
+    --mute:#9C978D;  --mute-bg:rgba(156,151,141,0.14);
+    --heart:#E5484D;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; padding:44px 28px 96px;
+  }
+  .wrap{max-width:980px; margin:0 auto;}
+  .top{display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:24px; flex-wrap:wrap;}
+  h1{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:0; letter-spacing:-0.01em;}
+
+  .search-box{position:relative; min-width:220px;}
+  .search-box input{
+    width:100%; padding:10px 14px 10px 36px; border-radius:20px; border:1px solid var(--line);
+    background:var(--paper); font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
+  }
+  .search-box input:focus{outline:none; border-color:var(--ink-soft);}
+  .search-box svg{position:absolute; left:12px; top:50%; transform:translateY(-50%); opacity:.4;}
+
+  .tabs{display:flex; gap:8px; margin-bottom:32px;}
+  .tab-btn{
+    font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--ink-soft);
+    background:transparent; border:1px solid var(--line); padding:8px 20px; border-radius:20px; cursor:pointer;
+  }
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn.active{background:var(--paper); color:var(--ink); border-color:var(--ink-soft);}
+  .tab-panel.hidden{display:none;}
+
+  details.section{border-top:1px solid var(--line); padding-top:16px; margin-bottom:24px;}
+  details.section summary{
+    cursor:pointer; list-style:none; user-select:none;
+    display:flex; align-items:center; gap:8px; margin-bottom:16px;
+  }
+  details.section summary::-webkit-details-marker{display:none;}
+  details.section summary::before{content:'▸'; font-size:13px; color:var(--ink-soft);}
+  details.section[open] summary::before{content:'▾';}
+  details.section summary h2{
+    font-family:'Fraunces',serif; font-weight:600; font-size:19px; margin:0;
+  }
+  details.section summary .count{font-size:14px; color:var(--ink-soft); font-family:'Inter',sans-serif;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px;}
+  .grid.compact{grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px;}
+
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--card-accent,#ccc);
+    border-radius:8px; padding:16px 18px;
+  }
+  .card.small{padding:11px 14px;}
+  .card-top{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px;}
+  .card-title{font-weight:600; font-size:15.5px; line-height:1.3;}
+  .card.small .card-title{font-size:13.5px;}
+  .badge-row{display:flex; align-items:center; gap:7px; flex:none;}
+  .heart{display:inline-flex; flex:none;}
+  .heart svg{width:22px; height:26px; display:block;}
+  .badge{
+    font-size:11px; font-weight:600; padding:3px 9px; border-radius:20px;
+    white-space:nowrap; text-transform:uppercase; letter-spacing:.02em;
+  }
+  .pill-row{display:flex; gap:6px; flex-wrap:wrap;}
+  .pill{
+    font-size:12px; padding:4px 10px; border-radius:20px; font-weight:500;
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .dot{width:6px; height:6px; border-radius:50%; display:inline-block;}
+  .notes{font-size:12px; color:var(--mute); font-style:italic; margin-top:10px;}
+  .empty{color:var(--ink-soft); font-size:13px; font-style:italic; padding:6px 0 0;}
+
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <h1>Suivi anime</h1>
+    <div class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="text" placeholder="Rechercher un titre, un genre...">
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="anime">Animes</button>
+    <button class="tab-btn" data-tab="serie">Series</button>
+  </div>
+
+  <div class="tab-panel" id="tab-panel-anime">
+
+    <details class="section" id="section-en-cours-anime" open>
+      <summary><h2>En cours</h2><span class="count" id="count-en-cours-anime"></span></summary>
+      <div class="grid" id="col-en-cours-anime"></div>
+    </details>
+
+    <details class="section" id="section-a-voir-anime" open>
+      <summary><h2>Suggestions</h2><span class="count" id="count-a-voir-anime"></span></summary>
+      <div class="grid" id="col-a-voir-anime"></div>
+    </details>
+
+    <details class="section" id="section-en-attente-anime" open>
+      <summary><h2>En attente de la suite</h2><span class="count" id="count-en-attente-anime"></span></summary>
+      <div class="grid" id="col-en-attente-anime"></div>
+    </details>
+
+    <details class="section" id="section-termine-anime">
+      <summary><h2>Termine</h2><span class="count" id="count-termine-anime"></span></summary>
+      <div class="grid compact" id="col-termine-anime"></div>
+    </details>
+
+    <details class="section" id="section-pas-interesse-anime">
+      <summary><h2>Pas interesse</h2><span class="count" id="count-pas-interesse-anime"></span></summary>
+      <div class="grid compact" id="col-pas-interesse-anime"></div>
+    </details>
+
+  </div>
+
+  <div class="tab-panel hidden" id="tab-panel-serie">
+
+    <details class="section" id="section-en-cours-serie" open>
+      <summary><h2>En cours</h2><span class="count" id="count-en-cours-serie"></span></summary>
+      <div class="grid" id="col-en-cours-serie"></div>
+    </details>
+
+    <details class="section" id="section-a-voir-serie" open>
+      <summary><h2>Suggestions</h2><span class="count" id="count-a-voir-serie"></span></summary>
+      <div class="grid" id="col-a-voir-serie"></div>
+    </details>
+
+    <details class="section" id="section-en-attente-serie" open>
+      <summary><h2>En attente de la suite</h2><span class="count" id="count-en-attente-serie"></span></summary>
+      <div class="grid" id="col-en-attente-serie"></div>
+    </details>
+
+    <details class="section" id="section-termine-serie">
+      <summary><h2>Termine</h2><span class="count" id="count-termine-serie"></span></summary>
+      <div class="grid compact" id="col-termine-serie"></div>
+    </details>
+
+    <details class="section" id="section-pas-interesse-serie">
+      <summary><h2>Pas interesse</h2><span class="count" id="count-pas-interesse-serie"></span></summary>
+      <div class="grid compact" id="col-pas-interesse-serie"></div>
+    </details>
+
+  </div>
+
+</div>
+
+<script>
+const DATA = {{DATA_JSON}}
+;
+
+const genreColors = {
+  Shonen:     {fg:'var(--g-shonen)',     bg:'var(--g-shonen-bg)'},
+  Seinen:     {fg:'var(--g-seinen)',     bg:'var(--g-seinen-bg)'},
+  Horreur:    {fg:'var(--g-horreur)',    bg:'var(--g-horreur-bg)'},
+  Action:     {fg:'var(--g-action)',     bg:'var(--g-action-bg)'},
+  Isekai:     {fg:'var(--g-isekai)',     bg:'var(--g-isekai-bg)'},
+  Comedie:    {fg:'var(--g-comedie)',    bg:'var(--g-comedie-bg)'},
+  Drame:      {fg:'var(--g-drame)',      bg:'var(--g-drame-bg)'},
+  Sport:      {fg:'var(--g-sport)',      bg:'var(--g-sport-bg)'},
+  Fantasy:    {fg:'var(--g-fantasy)',    bg:'var(--g-fantasy-bg)'},
+  Thriller:   {fg:'var(--g-thriller)',   bg:'var(--g-thriller-bg)'},
+  Historique: {fg:'var(--g-historique)', bg:'var(--g-historique-bg)'}
+};
+
+const etatColors = {
+  disponible: {fg:'var(--ok)',   bg:'var(--ok-bg)'},
+  estimation: {fg:'var(--warn)', bg:'var(--warn-bg)'},
+  inconnue:   {fg:'var(--mute)', bg:'var(--mute-bg)'}
+};
+
+function genreBadge(genre){
+  const c = genreColors[genre] || {fg:'var(--mute)', bg:'var(--mute-bg)'};
+  return `<span class="badge" style="background:${c.bg}; color:${c.fg}">${genre}</span>`;
+}
+
+function jalonPill(j){
+  const c = etatColors[j.etat] || etatColors.inconnue;
+  const text = j.date ? `${j.label} · ${j.date}` : j.label;
+  return `<span class="pill" style="background:${c.bg}; color:${c.fg}"><span class="dot" style="background:${c.fg}"></span>${text}</span>`;
+}
+
+function seriesCard(s, opts){
+  opts = opts || {};
+  const accent = (genreColors[s.genre]||{}).fg || '#ccc';
+  const jalons = s.jalons || [];
+  return `<div class="card${opts.small?' small':''}" style="--card-accent:${accent}" data-search="${(s.titre+' '+s.genre).toLowerCase()}">
+    <div class="card-top">
+      <div class="card-title">${s.titre}</div>
+      <div class="badge-row">
+        ${opts.favoriteAware && s.coup_de_coeur ? `<span class="heart" title="Coup de coeur"><svg viewBox="0 0 200 240" fill="var(--heart)"><path d="M100,235 C145,210 185,175 185,140 C185,115 178,108 165,105 C175,90 180,60 188,35 C178,55 150,70 130,90 C118,100 108,90 100,95 C92,90 82,100 70,90 C50,70 22,55 12,35 C20,60 25,90 35,105 C22,108 15,115 15,140 C15,175 55,210 100,235 Z"/></svg></span>` : ''}
+        ${genreBadge(s.genre)}
+      </div>
+    </div>
+    ${jalons.length ? `<div class="pill-row">${jalons.map(jalonPill).join('')}</div>` : ''}
+    ${opts.showNotes && s.notes ? `<div class="notes">${s.notes}</div>` : ''}
+  </div>`;
+}
+
+function suggestionCard(s){
+  const accent = (genreColors[s.genre]||{}).fg || '#ccc';
+  return `<div class="card" style="--card-accent:${accent}" data-search="${(s.titre+' '+s.genre).toLowerCase()}">
+    <div class="card-top">
+      <div class="card-title">${s.titre}</div>
+      ${genreBadge(s.genre)}
+    </div>
+    ${s.similaire_a && s.similaire_a.length ? `<div class="pill-row"><span class="pill" style="background:var(--mute-bg); color:var(--mute)">Ressemble a ${s.similaire_a.join(', ')}</span></div>` : ''}
+    ${s.notes ? `<div class="notes">${s.notes}</div>` : ''}
+  </div>`;
+}
+
+const MOIS_FR = {
+  janvier:0, février:1, fevrier:1, mars:2, avril:3, mai:4, juin:5,
+  juillet:6, août:7, aout:7, septembre:8, octobre:9, novembre:10,
+  décembre:11, decembre:11
+};
+
+// Ne reconnait que le format "JJ mois AAAA" (ex: "25 juillet 2026"), qui est
+// le seul format utilise pour une date au jour pres. Les dates moins precises
+// ("2027", "2027-2028", "fin 2026 / 2027", "printemps 2027"...) ne matchent
+// pas et sont donc traitees comme "pas de date exacte".
+function parseDateJourExact(dateStr){
+  if(!dateStr) return null;
+  const m = String(dateStr).trim().toLowerCase().match(/^(\d{1,2})\s+([a-zéû]+)\s+(\d{4})$/);
+  if(!m) return null;
+  const mois = MOIS_FR[m[2]];
+  if(mois === undefined) return null;
+  return new Date(parseInt(m[3],10), mois, parseInt(m[1],10));
+}
+
+// Un jalon ne compte comme "vraiment disponible" (pour classer la serie en
+// "En cours") que si etat=disponible ET que sa date, si elle est au jour
+// pres, est deja passee. Un jalon avec une date future au jour pres reste
+// vert (couleur) mais NE fait PAS basculer la serie en "En cours" : elle
+// reste en attente jusqu'a la sortie effective.
+function estReellementDispo(j){
+  if(j.etat !== 'disponible') return false;
+  const d = parseDateJourExact(j.date);
+  if(!d) return true;
+  const aujourdhui = new Date(); aujourdhui.setHours(0,0,0,0);
+  return d <= aujourdhui;
+}
+
+function renderTab(type){
+  const byType = arr => (arr||[]).filter(s => (s.type||'anime') === type);
+  const hasDispo = s => (s.jalons||[]).some(estReellementDispo);
+
+  const all = byType(DATA.series);
+  const parCoupDeCoeur = (a, b) => (b.coup_de_coeur ? 1 : 0) - (a.coup_de_coeur ? 1 : 0);
+  const enCoursActif = all.filter(s => s.statut === 'en_cours' && hasDispo(s)).sort(parCoupDeCoeur);
+  const enAttente   = all.filter(s => s.statut === 'en_cours' && !hasDispo(s)).sort(parCoupDeCoeur);
+  const termine     = all.filter(s => s.statut === 'termine').sort(parCoupDeCoeur);
+  const aVoir       = byType(DATA.a_voir);
+  const pasInteresse = byType(DATA.pas_interesse);
+
+  document.getElementById(`count-en-cours-${type}`).textContent = enCoursActif.length;
+  document.getElementById(`col-en-cours-${type}`).innerHTML = enCoursActif.length
+    ? enCoursActif.map(s => seriesCard(s, {showNotes:false, favoriteAware:true})).join('')
+    : '<p class="empty">Rien a rattraper pour le moment.</p>';
+
+  document.getElementById(`count-a-voir-${type}`).textContent = aVoir.length;
+  document.getElementById(`col-a-voir-${type}`).innerHTML = aVoir.length
+    ? aVoir.map(suggestionCard).join('')
+    : '<p class="empty">Aucune suggestion pour le moment.</p>';
+
+  document.getElementById(`count-en-attente-${type}`).textContent = enAttente.length;
+  document.getElementById(`col-en-attente-${type}`).innerHTML = enAttente.length
+    ? enAttente.map(s => seriesCard(s, {showNotes:true, favoriteAware:true})).join('')
+    : '<p class="empty">Rien en attente pour le moment.</p>';
+
+  document.getElementById(`count-termine-${type}`).textContent = termine.length;
+  document.getElementById(`col-termine-${type}`).innerHTML = termine.map(s => seriesCard(s, {small:true, showNotes:false, favoriteAware:true})).join('');
+
+  document.getElementById(`count-pas-interesse-${type}`).textContent = pasInteresse.length;
+  document.getElementById(`col-pas-interesse-${type}`).innerHTML = pasInteresse.length
+    ? pasInteresse.map(p => seriesCard(p, {small:true, showNotes:true})).join('')
+    : '<p class="empty">Rien exclu pour le moment.</p>';
+}
+
+function render(){
+  renderTab('anime');
+  renderTab('serie');
+}
+
+function applySearch(q){
+  q = q.trim().toLowerCase();
+  document.querySelectorAll('[data-search]').forEach(el => {
+    el.classList.toggle('hidden', q.length > 0 && !el.dataset.search.includes(q));
+  });
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById(`tab-panel-${btn.dataset.tab}`).classList.remove('hidden');
+  });
+});
+
+render();
+document.getElementById('search').addEventListener('input', e => applySearch(e.target.value));
+</script>
+</body>
+</html>
