@@ -10,14 +10,38 @@ des suggestions, et détection des sorties/annonces à surveiller.
 |---------------------------------|--------------------------------------------------------------------|
 | `anime-data.json`                | Source de vérité. C'est le SEUL fichier à éditer pour changer des infos. |
 | `anime-tracker.template.html`    | Squelette visuel. Ne jamais modifier à la main sauf demande explicite de design. |
-| `generate.py`                    | Génère `anime-tracker.html` à partir du JSON + du template.        |
-| `anime-tracker.html`             | Résultat final, à ouvrir dans un navigateur. Généré automatiquement, ne jamais éditer directement. |
+| `generate.py`                    | Génère `anime-tracker.html` à partir du JSON + du template. Utilisé aussi bien en local que par le build Cloudflare. |
+| `anime-tracker.html`             | Résultat local, généré automatiquement (gitignored, jamais commit). Ne jamais éditer directement. |
+| `wrangler.jsonc`                 | Config du Worker Cloudflare (nom, dossier `assets`). **Ne pas supprimer** : sans lui, chaque build CI régénère un config à la volée et Cloudflare refuse de redéployer par sécurité (conflit de nom avec le Worker existant, déjà rencontré une fois). |
+
+## Déploiement (Git → Cloudflare, source de vérité)
+
+- **Dépôt** : https://github.com/Draflo/animeandseriestracker (branche `main`).
+- **URL publique** : https://animeandseriestracker.flo2533.workers.dev/ — Worker
+  Cloudflare avec assets statiques (pas un projet "Pages" classique), rattaché
+  au même compte que le tracker Pokémon.
+- **Déploiement automatique** : chaque `git push` sur `main` déclenche un build
+  Cloudflare qui exécute `python generate.py && mkdir -p dist && cp
+  anime-tracker.html dist/index.html`, puis `npx wrangler deploy` (déploie le
+  dossier `dist`). Compter ~1-2 min entre le push et la mise à jour de l'URL.
+- **Le dossier Google Drive (`Projets/Drive`) n'est plus la source de vérité**
+  pour ce projet : ce dépôt Git le remplace. Ne pas éditer les fichiers côté
+  Drive en pensant que ça se propage — ça ne se propage pas, ce sont deux
+  copies indépendantes désormais.
+- Ce dépôt Git n'a pas le risque de troncature Google Drive documenté dans
+  generate.py (pas de sync tierce sur le dossier), mais les garde-fous
+  d'intégrité du script restent actifs par sécurité (ne font pas de mal).
 
 ## Workflow d'édition
 
-1. Modifier `anime-data.json` selon la demande.
-2. Une fois un bloc de modifications terminé (pas après chaque champ modifié
-   individuellement), lancer `python generate.py` pour régénérer le HTML.
+1. Cloner/récupérer le dépôt (`git pull`) depuis n'importe quelle machine.
+2. Modifier `anime-data.json` selon la demande.
+3. Une fois un bloc de modifications terminé (pas après chaque champ modifié
+   individuellement), lancer `python generate.py` **en local** pour valider
+   les données (genres, statuts, jalons) avant de push — plus rapide que
+   d'attendre l'échec du build Cloudflare.
+4. `git add`, `git commit`, `git push` sur `main` → déploiement automatique
+   (voir section Déploiement ci-dessus).
 3. Le script valide les données (genres, statuts, états de jalons) avant de
    générer. S'il remonte une erreur, corriger le JSON puis relancer.
 
@@ -25,9 +49,15 @@ Ne pas relancer `generate.py` après chaque petite modif si plusieurs
 changements sont demandés dans la même conversation : le faire une fois à la
 fin, quand le bloc de demandes est traité.
 
-### Garde-fou anti-troncature (important, incident déjà survenu)
+### Garde-fou anti-troncature (historique, incident déjà survenu côté Drive)
 
-Le dossier est synchronisé via Google Drive. Il est arrivé qu'un outil lise
+Cette section décrit un incident survenu quand ce projet vivait dans un
+dossier synchronisé Google Drive (`Projets/Drive`), avant la migration vers
+ce dépôt Git. Ce dépôt n'a plus ce risque de sync tierce, mais les
+garde-fous dans `generate.py` sont restés actifs par sécurité (inoffensifs,
+détectent aussi une troncature accidentelle d'un `git pull`/merge foireux).
+
+Le dossier Drive d'origine était synchronisé via Google Drive. Il est arrivé qu'un outil lise
 une version périmée/partiellement synchronisée de
 `anime-tracker.template.html` (coupée en plein milieu du `<script>`) sans
 qu'aucune erreur ne remonte : `generate.py` "réussissait" quand même, en
@@ -193,10 +223,12 @@ série ; les notes ne servent qu'à ajouter du contexte réellement nouveau
 - **Cowork** : réservé pour (1) la recherche périodique automatique des
   dates de sortie manquantes/floues (jalons `estimation`/`inconnue`), pas
   encore mise en place, et (2) les modifs faites depuis un autre appareil
-  sans terminal (via Dispatch).
-- Le dossier est synchronisé via Google Drive pour ordinateur. Ne pas
-  supposer un accès direct à Google Docs/Sheets natifs : ce sont de vrais
-  fichiers locaux (JSON/HTML), pas des fichiers Google natifs.
+  sans terminal, en travaillant directement sur le dépôt Git
+  (`Draflo/animeandseriestracker`) plutôt que sur un dossier synchronisé.
+- La source de vérité est ce dépôt Git, pas un dossier synchronisé (voir
+  section Déploiement). N'importe quel outil qui peut cloner/éditer/push sur
+  `main` peut modifier le tracker ; le déploiement Cloudflare se charge du
+  reste automatiquement.
 
 ## À faire plus tard (non implémenté)
 - Tâche Cowork planifiée (mensuelle) qui scanne les jalons `estimation` et
